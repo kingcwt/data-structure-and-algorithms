@@ -862,3 +862,227 @@ var hasCycle = function(head) {
     return false
 };
 ```
+
+
+### **[142. 环形链表 II](https://leetcode.cn/problems/linked-list-cycle-ii/)**
+
+给定一个链表的头节点  `head` ，返回链表开始入环的第一个节点。 *如果链表无环，则返回 `null`。*
+
+如果链表中有某个节点，可以通过连续跟踪 `next` 指针再次到达，则链表中存在环。 为了表示给定链表中的环，评测系统内部使用整数 `pos` 来表示链表尾连接到链表中的位置（**索引从 0 开始**）。如果 `pos` 是 `-1`，则在该链表中没有环。**注意：`pos` 不作为参数进行传递**，仅仅是为了标识链表的实际情况。
+
+**不允许修改** 链表。
+
+<img src='./algorithm5.png' height={650} />
+
+```jsx
+输入：head = [3,2,0,-4], pos = 1
+输出：返回索引为 1 的链表节点
+解释：链表中有一个环，其尾部连接到第二个节点。
+```
+
+- js
+
+```jsx
+function ListNode(val) {
+  this.val = val;
+  this.next = null;
+}
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var detectCycle = function (head) {
+   
+    // let p = head
+    s = new Set()
+    while(head!=null){
+      if(s.has(head)){
+        return head
+      }
+      s.add(head)
+      head = head.next
+    }
+
+    return null
+};
+
+const list = new ListNode(3);
+list.next = new ListNode(2);
+list.next.next = new ListNode(0);
+list.next.next.next = new ListNode(-4);
+list.next.next.next.next = list.next
+console.log(detectCycle(list))
+```
+
+- go
+
+```go
+package main
+
+import "fmt"
+
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+
+func detectCycle(head *ListNode) *ListNode {
+
+	m := make(map[*ListNode]bool)
+
+	for head != nil {
+		if _, ok := m[head]; ok {
+			return head
+		}
+		m[head] = true
+		head = head.Next
+	}
+	return nil
+}
+
+func main() {
+	list := &ListNode{Val: 3}
+	list.Next = &ListNode{Val: 2}
+	list.Next.Next = &ListNode{Val: 0}
+	list.Next.Next.Next = &ListNode{Val: -4}
+	list.Next.Next.Next.Next = list.Next
+	res := detectCycle(list)
+	fmt.Printf("res:=%v", res.Val)
+}
+```
+
+### **[160. 相交链表](https://leetcode.cn/problems/intersection-of-two-linked-lists/)**
+
+给你两个单链表的头节点 `headA` 和 `headB` ，请你找出并返回两个单链表相交的起始节点。如果两个链表不存在相交节点，返回 `null` 。
+
+<img src='./algorithm6.png' height={650} />
+<img src='./algorithm7.png' height={650} />
+
+```go
+输入：intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
+输出：Intersected at '8'
+解释：相交节点的值为 8 （注意，如果两个链表相交则不能为 0）。
+从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,6,1,8,4,5]。
+在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。
+— 请注意相交节点的值不为 1，因为在链表 A 和链表 B 之中值为 1 的节点 (A 中第二个节点和 B 中第三个节点) 是不同的节点。换句话说，它们在内存中指向两个不同的位置，而链表 A 和链表 B 中值为 8 的节点 (A 中第三个节点，B 中第四个节点) 在内存中指向相同的位置。
+```
+
+- js
+
+```jsx
+/**
+ * 输入：intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
+   输出：Intersected at '8'
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+function ListNode(val) {
+  this.val = val;
+  this.next = null;
+}
+/**
+ * @param {ListNode} headA
+ * @param {ListNode} headB
+ * @return {ListNode}
+ */
+var getIntersectionNode = function (headA, headB) {
+    
+    console.log(headA, headB)
+    let nodeSet = new Set()
+    while(headA !=null){
+        nodeSet.add(headA)
+        headA = headA.next
+    }
+
+    console.log(nodeSet)
+    while(headB !=null){
+        if(nodeSet.has(headB)){
+            return headB
+        }
+        headB = headB.next
+    }
+
+};
+
+l3 = new ListNode(8)
+l3.next = new ListNode(4)
+l3.next.next = new ListNode(5)
+
+l1 = new ListNode(4)
+l1.next = new ListNode(1)
+l1.next.next = l3
+l1.next.next.next = l3.next
+l1.next.next.next.next = l3.next.next
+l2  = new ListNode(5)
+l2.next  = new ListNode(6)
+l2.next.next  = new ListNode(1)
+l2.next.next.next  = l3
+l2.next.next.next.next  = l3.next
+l2.next.next.next.next.next  =l3.next.next
+console.log(getIntersectionNode(l1,l2))
+```
+
+- go
+
+```go
+package main
+
+import "fmt"
+
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func getIntersectionNode(headA, headB *ListNode) *ListNode {
+
+	nodeSet := make(map[*ListNode]bool)
+
+	for headA != nil {
+		nodeSet[headA] = true
+		headA = headA.Next
+	}
+
+	for headB != nil {
+		if _, ok := nodeSet[headB]; ok {
+			return headB
+		}
+		headB = headB.Next
+	}
+
+	return nil
+
+}
+
+func main() {
+	l3 := &ListNode{Val: 8}
+	l3.Next = &ListNode{Val: 4}
+	l3.Next.Next = &ListNode{Val: 5}
+
+	l1 := &ListNode{Val: 4}
+	l1.Next = &ListNode{Val: 1}
+	l1.Next.Next = l3
+	l1.Next.Next.Next = l3.Next
+	l1.Next.Next.Next.Next = l3.Next.Next
+
+	l2 := &ListNode{Val: 5}
+	l2.Next = &ListNode{Val: 6}
+	l2.Next.Next = &ListNode{Val: 1}
+	l2.Next.Next.Next = l3
+	l2.Next.Next.Next.Next = l3.Next
+	l2.Next.Next.Next.Next.Next = l3.Next.Next
+
+	res := getIntersectionNode(l1, l2)
+	fmt.Println(res.Val)
+}
+```
