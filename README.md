@@ -1086,3 +1086,130 @@ func main() {
 	fmt.Println(res.Val)
 }
 ```
+
+### **[206. 反转链表](https://leetcode.cn/problems/reverse-linked-list/)**
+
+给你单链表的头节点 `head` ，请你反转链表，并返回反转后的链表。
+
+<img src="./algorithm07.png" height={650} />
+```jsx
+输入：head = [1,2,3,4,5]
+输出：[5,4,3,2,1]
+```
+
+- javascript
+
+```jsx
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseList = function(head) {
+   let pre = null,cur = head;
+   if (head === null) return head
+   while(cur){
+       const next = cur.next
+       cur.next = pre
+       pre = cur
+       cur = next
+   }
+   return pre;
+};
+```
+
+- golang
+
+```jsx
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func reverseList(head *ListNode) *ListNode {
+    if head == nil||head.Next == nil {
+        return head
+    }
+    var pre *ListNode = nil
+    cur := head
+    for cur !=nil {
+        next := cur.Next
+        cur.Next = pre
+        pre = cur
+        cur = next
+    }
+    return pre
+}
+```
+
+### **[234. 回文链表](https://leetcode.cn/problems/palindrome-linked-list/)**
+
+给你一个单链表的头节点 `head` ，请你判断该链表是否为回文链表。如果是，返回 `true` ；否则，返回 `false` 。
+
+<img src="./algorithm08.png" height={650} />
+
+```jsx
+输入：head = [1,2,2,1]
+输出：true
+```
+
+- javascript
+
+```jsx
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var isPalindrome = function (head) {
+  let curArr = []
+  while(head){
+    curArr.push(head.val)
+    head = head.next
+  }
+  for (let i=0;i<curArr.length;i++){
+    if(curArr[i]!=curArr[curArr.length-1-i]) return false
+  }
+  return true
+};
+```
+
+- golang
+
+```go
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func isPalindrome(head *ListNode) bool {
+
+     arr := []int{}
+     for head !=nil {
+      arr = append(arr,head.Val)
+      head = head.Next
+     }
+     for i:=0;i<len(arr);i++ {
+       if arr[i] != arr[len(arr)-1-i] {
+         return false
+       }
+     }
+     return true
+}
+```
