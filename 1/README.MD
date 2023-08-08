@@ -1,4 +1,4 @@
-### **[70. 爬楼梯](https://leetcode.cn/problems/climbing-stairs/)**
+#### **[70. 爬楼梯](https://leetcode.cn/problems/climbing-stairs/)**
 
 假设你正在爬楼梯。需要 `n` 阶你才能到达楼顶。
 
