@@ -1,176 +1,10 @@
 # data-structure-and-algorithms
 
-#### **[70. 爬楼梯](./1/README.MD)**
+### **[70. 爬楼梯](./70/README.MD)**
+### **[1. 两数之和](./1/README.MD)**
 
+### **[88. 合并两个有序数组](./88/README.MD)**
 
-
-### **[1. 两数之和](https://leetcode.cn/problems/two-sum/)**
-
-给定一个整数数组 `nums` 和一个整数目标值 `target`，请你在该数组中找出 **和为目标值** *`target`*  的那 **两个** 整数，并返回它们的数组下标。v
-
-- 示例
-
-```go
-输入：nums = [2,7,11,15], target = 9
-输出：[0,1]
-解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。
-```
-
-求解
-
-- js
-
-```jsx
-/**
- * 暴力求解
- * @param {number[]} nums
- * @param {number} target
- * @return {number[]}
- */
-var twoSum = function(nums, target) {
-    for(let i=0;i<nums.length;i++){
-        for(let j=i+1;j<nums.length;j++){
-            if(nums[i]+nums[j] === target){
-                return [i,j]
-            }
-        }
-    }
-};
-console.log(twoSum([3,2,4],6));
-
-/**
- * 使用map
- * @param {number[]} nums
- * @param {number} target
- * @return {number[]}
- */
-var twoSum = function(nums, target) {
-    let map = new Map();
-    for(let i=0;i<nums.length;i++){
-        let current = target - nums[i];
-        if(map.has(current)){
-            return [i,map.get(current)]
-        }else{
-            map.set(nums[i],i)
-        }
-    }
-};
-```
-
-- go
-
-```go
-package main
-
-import "fmt"
-
-// 暴力求值
-func twoSum(nums []int, target int) []int {
-	for i := 0; i < len(nums); i++ {
-		for j := i + 1; j < len(nums); j++ {
-			if nums[i]+nums[j] == target {
-				return []int{i, j}
-			}
-		}
-	}
-	return []int{}
-}
-
-// map求值
-func twoSum2(nums []int, target int) []int {
-	m := map[int]int{}
-	for i := 0; i < len(nums); i++ {
-		r := target - nums[i]
-		if val, ok := m[r]; ok {
-			return []int{i, val}
-		} else {
-			m[nums[i]] = i
-		}
-	}
-	return []int{}
-}
-
-func main() {
-	fmt.Println(twoSum2([]int{2, 7, 11, 15}, 9))
-}
-```
-
-### **[88. 合并两个有序数组](https://leetcode.cn/problems/merge-sorted-array/)**
-
-给你两个按 **非递减顺序** 排列的整数数组 `nums1` 和 `nums2`，另有两个整数 `m` 和 `n` ，分别表示 `nums1` 和 `nums2` 中的元素数目。
-
-请你 **合并** `nums2` w到 `nums1` 中，使合并后的数组同样按 **非递减顺序** 排列。
-
-注意：最终，合并后数组不应由函数返回，而是存储在数组 `nums1` 中。为了应对这种情况，`nums1` 的初始长度为 `m + n`，其中前 `m` 个元素表示应合并的元素，后 `n` 个元素为 `0` ，应忽略。`nums2` 的长度为 `n` 。
-
-- 示例1
-
-```jsx
-输入：nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
-输出：[1,2,2,3,5,6]
-解释：需要合并 [1,2,3] 和 [2,5,6] 。
-合并结果是 [1,2,2,3,5,6] ，其中斜体加粗标注的为 nums1 中的元素。
-```
-
-- js
-
-```jsx
-/**
- * @param {number[]} nums1
- * @param {number} m
- * @param {number[]} nums2
- * @param {number} n
- * @return {void} Do not return anything, modify nums1 in-place instead.
- */
-var merge = function(nums1, m, nums2, n) {
-    let i = m-1;
-    let j = n-1;
-    let k = m+n-1;
-    while(i>=0 && j>=0){
-        if(nums1[i]>nums2[j]){
-            nums1[k] = nums1[i]
-            i--;
-        }else{
-            nums1[k] = nums2[j]
-            j--;
-        }
-        k--;
-    }
-    while(j>=0){
-        nums1[k] = nums2[j]
-        j--;
-        k--;
-    }
-
-   return nums1
-};
-```
-
-- go
-
-```go
-func merge(nums1 []int, m int, nums2 []int, n int)  {
-    i := m-1;
-    j := n-1;
-    k := m+n-1;
-    for i>=0&&j>=0 {
-        if nums1[i] > nums2[j] {
-            nums1[k] = nums1[i]
-            i--;
-        }else{
-            nums1[k] = nums2[j]
-            j--
-        }
-        k--;
-    }
-
-    for j>=0{
-        nums1[k] = nums2[j]
-        j--
-        k--
-    }
-}
-```
 
 ### **[283. 移动零](https://leetcode.cn/problems/move-zeroes/)**
 
@@ -1070,5 +904,122 @@ func isPalindrome(head *ListNode) bool {
        }
      }
      return true
+}
+```
+
+
+### **[876. 链表的中间结点](https://leetcode.cn/problems/middle-of-the-linked-list/)**
+
+给你单链表的头结点 `head` ，请你找出并返回链表的中间结点。
+
+如果有两个中间结点，则返回第二个中间结点。
+
+<img src='/algorithm9.png' height={650} />
+
+```go
+输入：head = [1,2,3,4,5]
+输出：[3,4,5]
+解释：链表只有一个中间结点，值为 3 。
+```
+
+- javascript
+
+```go
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var middleNode = function(head) {
+    let slow = fast = head
+    while(fast&&fast.next){
+        slow = slow.next
+        fast = fast.next.next
+    }
+    return slow
+};
+```
+
+- golang
+
+```go
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func middleNode(head *ListNode) *ListNode {
+    slow := head
+    fast := head
+    for fast!=nil && fast.Next !=nil{
+        slow = slow.Next
+        fast = fast.Next.Next
+    }
+    return slow
+}
+```
+
+### **[剑指 Offer 22. 链表中倒数第k个节点](https://leetcode.cn/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/)**
+
+输入一个链表，输出该链表中倒数第k个节点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾节点是倒数第1个节点。
+
+例如，一个链表有 `6` 个节点，从头节点开始，它们的值依次是 `1、2、3、4、5、6`。这个链表的倒数第 `3` 个节点是值为 `4` 的节点。
+
+```go
+给定一个链表: 1->2->3->4->5, 和 k = 2.
+
+返回链表 4->5.
+```
+
+- javascript
+
+```go
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} k
+ * @return {ListNode}
+ */
+var getKthFromEnd = function(head, k) {
+    let arr =[]
+    while(head){
+        arr.push(head)
+        head = head.next
+    }
+    return arr[arr.length-k]
+};
+```
+
+- golang
+
+```go
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func getKthFromEnd(head *ListNode, k int) *ListNode {
+       arr :=[]*ListNode{}
+       for head!=nil{
+           arr = append(arr,head)
+           head = head.Next
+       }
+       return arr[len(arr)-k]
 }
 ```
