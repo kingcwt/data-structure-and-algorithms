@@ -1,5 +1,8 @@
 # data-structure-and-algorithms
 
+查看当前内容的博客地址：http://localhost:8080/blogs/web/algorithm/  
+
+
 ### **[876. 链表的中间结点](./876/README.MD)**
 ### **[232. 用栈实现队列](./232/README.MD)**
 ### **[101. 对称二叉树](./101/README.MD)**
