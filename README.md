@@ -1,6 +1,6 @@
 # data-structure-and-algorithms
 
-查看当前内容的博客地址：http://localhost:8080/blogs/web/algorithm/  
+查看当前内容的博客地址：[http://localhost:8080/blogs/web/algorithm/ ](https://blog.kingcwt.top/blogs/web/algorithm/) 
 
 
 ### **[876. 链表的中间结点](./876/README.MD)**
