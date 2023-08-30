@@ -2,7 +2,8 @@
 
 查看当前内容的博客地址：https://blog.kingcwt.top/blogs/web/algorithm/  
 
-
+### **[42. 接雨水](./42/README.MD)**
+### **[15. 三数之和](./15/README.MD)**
 ### **[11. 盛最多水的容器](./11/README.MD)**
 ### **[876. 链表的中间结点](./876/README.MD)**
 ### **[232. 用栈实现队列](./232/README.MD)**
