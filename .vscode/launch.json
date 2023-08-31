@@ -17,7 +17,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "针对 localhost 启动 Chrome",
-            "url": "http://127.0.0.1:5500/128/index.html",
+            "url": "http://127.0.0.1:5500/438/index.html",
             "webRoot": "${workspaceFolder}"
         }
     ]
