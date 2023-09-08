@@ -32,3 +32,5 @@
 ### **[49. 字母异位词分组](./49/README.MD)**
 ### **[128. 最长连续序列](./128/README.MD)**
 ### **[冒泡排序](./bubbleSort/README.MD)**
+### **[选择排序](./selectionSort/README.MD)**
+### **[插入排序](./insertionSort/README.MD)**
