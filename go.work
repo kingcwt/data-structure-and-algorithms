@@ -25,4 +25,6 @@ use (
 	./42
 	./438
 	./bubbleSort
+	./selectionSort
+	./insertionSort
 )
