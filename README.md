@@ -34,3 +34,4 @@
 ### **[冒泡排序](./bubbleSort/README.MD)**
 ### **[选择排序](./selectionSort/README.MD)**
 ### **[插入排序](./insertionSort/README.MD)**
+### **[希尔排序](./shellSort/README.MD)**
