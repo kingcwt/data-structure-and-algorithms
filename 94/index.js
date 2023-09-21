@@ -22,3 +22,12 @@ var inorderTraversal = function(root) {
     dfs(root)
     return arr
 };
+
+
+
+let test = (root) =>{
+
+}
+
+
+console.log(test())
