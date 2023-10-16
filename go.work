@@ -28,4 +28,5 @@ use (
 	./selectionSort
 	./insertionSort
 	./shellSort
+	./260
 )
