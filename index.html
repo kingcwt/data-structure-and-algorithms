@@ -1,12 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>复制并插入文本</title>
 </head>
 <body>
-    <script src="./test.js"></script>
+    <button id="copyButton">复制文本</button>
+    <button id="pasteButton">粘贴文本</button>
+    <div contenteditable="true" id="editableDiv"></div>
+
+    <script>
+        const copyButton = document.getElementById('copyButton');
+        const pasteButton = document.getElementById('pasteButton');
+        const editableDiv = document.getElementById('editableDiv');
+
+        copyButton.addEventListener('click', function() {
+            // 从可编辑的 div 中获取文本
+            const textToCopy = editableDiv.innerText;
+
+            // 创建一个文本域元素并设置其值为要复制的文本
+            const textarea = document.createElement('textarea');
+            textarea.value = textToCopy;
+
+            // 将文本域元素添加到页面中（但不可见）
+            document.body.appendChild(textarea);
+
+            // 选择文本域中的文本并执行复制操作
+            textarea.select();
+            document.execCommand('copy');
+
+            // 从页面中移除文本域元素
+            document.body.removeChild(textarea);
+        });
+
+        pasteButton.addEventListener('click', function() {
+            // 创建一个文本域元素
+            const textarea = document.createElement('textarea');
+
+            // 将文本域元素添加到页面中（但不可见）
+            document.body.appendChild(textarea);
+
+            // 将剪贴板中的内容粘贴到文本域中
+            textarea.select();
+            document.execCommand('paste');
+
+            // 获取文本域中的内容
+            const pastedText = textarea.value;
+
+            // 从页面中移除文本域元素
+            document.body.removeChild(textarea);
+
+            // 在光标位置插入粘贴的文本
+            const selection = window.getSelection();
+            const range = selection.getRangeAt(0);
+            range.insertNode(document.createTextNode(pastedText));
+        });
+    </script>
+
+
 </body>
 </html>
