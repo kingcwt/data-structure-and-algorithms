@@ -29,4 +29,5 @@ use (
 	./insertionSort
 	./shellSort
 	./260
+	./2652
 )
