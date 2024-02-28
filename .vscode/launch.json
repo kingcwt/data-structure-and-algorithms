@@ -4,6 +4,7 @@
     // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": "Connect to server",
             "type": "go",
@@ -17,7 +18,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "针对 localhost 启动 Chrome",
-            "url": "http://127.0.0.1:56004/1726/index.html",
+            "url": "http://127.0.0.1:53289/70/index.html",
             "webRoot": "${workspaceFolder}"
         }
     ]
